@@ -1,6 +1,7 @@
 package com.dianping.controller;
 
 
+import com.dianping.core.UnifyResponseSuccess;
 import com.dianping.model.UserModel;
 import com.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/get")
-    public UserModel getUser(@RequestParam(name = "id") Integer id) {
-        return  userService.getUser(id);
+    public UnifyResponseSuccess getUser(@RequestParam(name = "id") Integer id) {
+        UserModel userModel = userService.getUser(id);
+        return UnifyResponseSuccess.create(userModel);
     }
 
 }
