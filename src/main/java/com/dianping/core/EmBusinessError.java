@@ -1,7 +1,6 @@
 package com.dianping.core;
 
 public enum EmBusinessError {
-
     //通用的错误类型10000开头
     NO_OBJECT_FOUND(10001,"请求对象不存在"),
     UNKNOWN_ERROR(10002,"未知错误"),
@@ -23,7 +22,7 @@ public enum EmBusinessError {
         this.errMsg = errMsg;
     }
 
-    public static Integer getErrCode() {
+    public Integer getErrCode() {
         return errCode;
     }
 
@@ -31,7 +30,7 @@ public enum EmBusinessError {
         this.errCode = errCode;
     }
 
-    public static String getErrMsg() {
+    public String getErrMsg() {
         return errMsg;
     }
 

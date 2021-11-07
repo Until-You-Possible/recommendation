@@ -1,10 +1,15 @@
 package com.dianping.core;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class UnifyResponseError {
 
     //错误码
     private Integer errCode;
-
 
     //错误描述
     private String errMsg;
@@ -15,21 +20,15 @@ public class UnifyResponseError {
     }
 
     public UnifyResponseError(EmBusinessError emBusinessError){
-        this.errCode = EmBusinessError.getErrCode();
-        this.errMsg = EmBusinessError.getErrMsg();
+        this.errCode = emBusinessError.getErrCode();
+        this.errMsg = emBusinessError.getErrMsg();
     }
 
-    public Integer getErrCode() {
-        return errCode;
-    }
 
     public void setErrCode(Integer errCode) {
         this.errCode = errCode;
     }
 
-    public String getErrMsg() {
-        return errMsg;
-    }
 
     public void setErrMsg(String errMsg) {
         this.errMsg = errMsg;

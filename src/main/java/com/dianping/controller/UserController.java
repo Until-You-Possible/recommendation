@@ -1,6 +1,8 @@
 package com.dianping.controller;
 
 
+import com.dianping.core.BusinessException;
+import com.dianping.core.EmBusinessError;
 import com.dianping.core.UnifyResponseSuccess;
 import com.dianping.model.UserModel;
 import com.dianping.service.UserService;
@@ -20,8 +22,11 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/get")
-    public UnifyResponseSuccess getUser(@RequestParam(name = "id") Integer id) {
+    public UnifyResponseSuccess getUser(@RequestParam(name = "id") Integer id) throws BusinessException {
         UserModel userModel = userService.getUser(id);
+        if (userModel == null) {
+            throw new BusinessException(EmBusinessError.NO_OBJECT_FOUND);
+        }
         return UnifyResponseSuccess.create(userModel);
     }
 
