@@ -49,7 +49,7 @@ public class UserController {
         registerUser.setGender(userModelDTO.getGender());
         registerUser.setNickName(userModelDTO.getNickName());
         registerUser.setPassword(userModelDTO.getPassword());
-        registerUser.setTelphone(userModelDTO.getTelphone());
+        registerUser.setTelephone(userModelDTO.getTelphone());
         UserModel userModel1 = userService.register(registerUser);
         return UnifyResponseSuccess.create(userModel1);
     }
