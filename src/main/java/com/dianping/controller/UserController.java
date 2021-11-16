@@ -11,6 +11,7 @@ import com.dianping.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +41,8 @@ public class UserController {
     }
 
     // user register
-    public UnifyResponseSuccess register(@Valid  @RequestParam UserModelDTO userModelDTO, BindingResult bindingResult)
+    @RequestMapping("/register")
+    public UnifyResponseSuccess register(@RequestBody UserModelDTO userModelDTO, BindingResult bindingResult)
             throws BusinessException, NoSuchAlgorithmException {
         if (bindingResult.hasErrors()) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, Util.processErrorString(bindingResult));
@@ -49,7 +51,7 @@ public class UserController {
         registerUser.setGender(userModelDTO.getGender());
         registerUser.setNickName(userModelDTO.getNickName());
         registerUser.setPassword(userModelDTO.getPassword());
-        registerUser.setTelephone(userModelDTO.getTelphone());
+        registerUser.setTelephone(userModelDTO.getTelephone());
         UserModel userModel1 = userService.register(registerUser);
         return UnifyResponseSuccess.create(userModel1);
     }
