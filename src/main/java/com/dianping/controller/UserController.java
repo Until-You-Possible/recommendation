@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
@@ -42,8 +43,9 @@ public class UserController {
 
     // user register
     @RequestMapping("/register")
-    public UnifyResponseSuccess register(@RequestBody UserModelDTO userModelDTO, BindingResult bindingResult)
-            throws BusinessException, NoSuchAlgorithmException {
+    public UnifyResponseSuccess register(@Valid @RequestBody UserModelDTO userModelDTO,
+                                         BindingResult bindingResult)
+            throws BusinessException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (bindingResult.hasErrors()) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, Util.processErrorString(bindingResult));
         }
@@ -52,8 +54,8 @@ public class UserController {
         registerUser.setNickName(userModelDTO.getNickName());
         registerUser.setPassword(userModelDTO.getPassword());
         registerUser.setTelephone(userModelDTO.getTelephone());
-        UserModel userModel1 = userService.register(registerUser);
-        return UnifyResponseSuccess.create(userModel1);
+        UserModel resUserModel = userService.register(registerUser);
+        return UnifyResponseSuccess.create(resUserModel);
     }
 
 }
