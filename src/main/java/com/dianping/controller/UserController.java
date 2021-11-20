@@ -5,6 +5,7 @@ import com.dianping.Until.Util;
 import com.dianping.core.BusinessException;
 import com.dianping.core.EmBusinessError;
 import com.dianping.core.UnifyResponseSuccess;
+import com.dianping.dto.UserLoginDTO;
 import com.dianping.dto.UserModelDTO;
 import com.dianping.model.UserModel;
 import com.dianping.service.UserService;
@@ -56,6 +57,15 @@ public class UserController {
         registerUser.setTelephone(userModelDTO.getTelephone());
         UserModel resUserModel = userService.register(registerUser);
         return UnifyResponseSuccess.create(resUserModel);
+    }
+    // user login
+    @RequestMapping("/login")
+    public UnifyResponseSuccess login(@RequestBody UserLoginDTO userLoginDTO, BindingResult bindingResult) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        if (bindingResult.hasErrors()) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, Util.processErrorString(bindingResult));
+        }
+        UserModel userModel =  userService.login(userLoginDTO.getTelephone(), userLoginDTO.getPassword());
+        return UnifyResponseSuccess.create(userModel);
     }
 
 }
