@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -27,9 +28,11 @@ import java.security.NoSuchAlgorithmException;
 @Validated
 public class UserController {
 
-
+    private static final String CURRENT_USER_SESSION = "";
+    private final HttpServletRequest httpServletRequest;
     private final UserService userService;
-    public UserController(UserService userService) {
+    public UserController(HttpServletRequest httpServletRequest, UserService userService) {
+        this.httpServletRequest = httpServletRequest;
         this.userService = userService;
     }
 
@@ -65,7 +68,23 @@ public class UserController {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, Util.processErrorString(bindingResult));
         }
         UserModel userModel =  userService.login(userLoginDTO.getTelephone(), userLoginDTO.getPassword());
+        // if user login successfully
+        // set current user info
+        httpServletRequest.getSession().setAttribute(CURRENT_USER_SESSION, userModel);
         return UnifyResponseSuccess.create(userModel);
+    }
+    // user logout
+    @RequestMapping("/logout")
+    public UnifyResponseSuccess login() throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        httpServletRequest.getSession().invalidate();
+        return UnifyResponseSuccess.create(null);
+    }
+
+    // get current user info
+    @RequestMapping("getUserInfo")
+    public UserModel getUserInfo() {
+        UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute(CURRENT_USER_SESSION);
+        return userModel;
     }
 
 }
