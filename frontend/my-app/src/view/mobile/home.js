@@ -3,24 +3,31 @@ import "./style.scss"
 import Header from "../../components/mobile/Header";
 import Section from "../../components/mobile/Section";
 import Footer from "../../components/mobile/Footer";
-import {Router, Route, Switch} from "react-router-dom";
+import {Router, Route} from "react-router-dom";
 import { Routes } from "react-router"
 import Login from "./login";
 import NoMatch from "../../components/cmmmon/notMatch";
-const Main = () => <h1>Hello world</h1>;
+
+function Main() {
+    return null;
+}
+
 export default function MobileHome() {
     return (
+        <Router>
             <div className="mobileHomeContainer" data-component="mobile-home-component">
                 <Header />
-                <Switch>
+                <Routes>
                     <Route path= "/" exact>
-                        <Main />
+                        <Section />
                     </Route>
                     <Route path="/login">
                         <Login />
                     </Route>
-                </Switch>
+                </Routes>
                 <Footer />
             </div>
+        </Router>
+
     )
 }
