@@ -1,12 +1,16 @@
 
 import 'antd/dist/antd.css';
 import './App.css';
-import Home from "./view/Home"
+import MobileHome from "./view/mobile/home";
+import {BrowserRouter, Router} from "react-router-dom";
+
 function App() {
   return (
-    <div className="App">
-        <Home />
-    </div>
+      <Router>
+          <div className="App">
+              <MobileHome />
+          </div>
+      </Router>
   );
 }
 
