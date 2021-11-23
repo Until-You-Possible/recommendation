@@ -3,8 +3,7 @@ import "./style.scss"
 import Header from "../../components/mobile/Header";
 import Section from "../../components/mobile/Section";
 import Footer from "../../components/mobile/Footer";
-import {Router, Route} from "react-router-dom";
-import { Routes } from "react-router"
+import {Router, Route, Routes} from "react-router-dom";
 import Login from "./login";
 import NoMatch from "../../components/cmmmon/notMatch";
 
@@ -14,20 +13,14 @@ function Main() {
 
 export default function MobileHome() {
     return (
-        <Router>
             <div className="mobileHomeContainer" data-component="mobile-home-component">
                 <Header />
                 <Routes>
-                    <Route path= "/" exact>
-                        <Section />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
+                    <Route path= "/home" exact element={<Section />} />
+                    <Route path="/login" element={<Login />} />
                 </Routes>
                 <Footer />
             </div>
-        </Router>
 
     )
 }

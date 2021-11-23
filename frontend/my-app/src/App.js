@@ -2,49 +2,17 @@
 import 'antd/dist/antd.css';
 import './App.css';
 import MobileHome from "./view/mobile/home";
-import {Link, Route, Router, Routes, Switch} from "react-router-dom";
-function Home() {
-    return <h2>Home</h2>;
-}
+import {Link, Route, BrowserRouter as Router, Routes , Switch} from "react-router-dom";
 
-function About() {
-    return <h2>About</h2>;
-}
-
-function Topics() {
-    return <h2>Topics</h2>;
-}
+const Home = () => <h1>Home</h1>
+const About = () => <h1>About</h1>
+const MissingPage = () => <h1>404</h1>
 
 function App() {
   return (
-      // <div className="App">
-      //     <MobileHome />
-      // </div>
       <Router>
-          <div>
-              <ul>
-                  <li>
-                      <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                      <Link to="/about">About</Link>
-                  </li>
-                  <li>
-                      <Link to="/topics">Topics</Link>
-                  </li>
-              </ul>
-
-              <Routes>
-                  <Route path="/about">
-                      <About />
-                  </Route>
-                  <Route path="/topics">
-                      <Topics />
-                  </Route>
-                  <Route path="/">
-                      <Home />
-                  </Route>
-              </Routes>
+          <div className="App">
+              <MobileHome />
           </div>
       </Router>
   );
