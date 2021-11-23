@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
 export default function Header() {
     return (
         <div className="headerWrap">
@@ -10,7 +11,9 @@ export default function Header() {
                 center name
             </div>
             <div className="login-entry">
-                登陆
+                <Link to="/login">
+                    登陆
+                </Link>
             </div>
         </div>
     )
