@@ -22,3 +22,7 @@ spring:
     static-path-pattern: /static/**
 # 使用druid做连接池管理
 
+admin:
+  email: admin@outlook.com
+  password: 123456
+

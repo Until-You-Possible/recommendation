@@ -83,8 +83,7 @@ public class UserController {
     // get current user info
     @RequestMapping("getUserInfo")
     public UserModel getUserInfo() {
-        UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute(CURRENT_USER_SESSION);
-        return userModel;
+        return (UserModel) httpServletRequest.getSession().getAttribute(CURRENT_USER_SESSION);
     }
 
 }
