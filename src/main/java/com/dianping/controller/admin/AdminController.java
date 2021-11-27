@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,11 @@ import java.util.Map;
 @ResponseBody
 @RequestMapping("/admin/admin")
 public class AdminController {
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
+    private static final String CURRENT_USER_INFO = "CURRENT_USER_INFO";
 
     @Value("${admin.email}")
     private String email;
@@ -34,7 +40,16 @@ public class AdminController {
             stringMap.put("email", "password不合法或者不正确");
             return stringMap;
         }
+        stringMap.put("status", "success");
+        stringMap.put("message", "后台登陆成功");
+        httpServletRequest.getSession().setAttribute(CURRENT_USER_INFO, email);
         return stringMap;
+    }
+
+    @PostMapping("/logout")
+    public UnifyResponseSuccess logOut() {
+        httpServletRequest.getSession().invalidate();
+        return UnifyResponseSuccess.create(null);
     }
 
 }
