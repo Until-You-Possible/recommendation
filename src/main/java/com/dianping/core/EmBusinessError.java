@@ -11,7 +11,9 @@ public enum EmBusinessError {
     //用户服务相关的错误类型20000开头
     REGISTER_DUP_FAIL(20001,"用户已存在"),
 
-    LOGIN_FAIL(20002,"手机号或密码错误");
+    // 后台超级管理员没有登陆 ADMIN_SHOULD_LOGIN
+    LOGIN_FAIL(20002,"手机号或密码错误"),
+    ADMIN_SHOULD_LOGIN(20003,"请登陆后台关系系统");
 
     private Integer errCode;
 

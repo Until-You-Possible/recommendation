@@ -20,7 +20,7 @@ public class AdminController {
     @Autowired
     private HttpServletRequest httpServletRequest;
 
-    private static final String CURRENT_USER_INFO = "CURRENT_USER_INFO";
+    public static String CURRENT_USER_INFO = "CURRENT_USER_INFO";
 
     @Value("${admin.email}")
     private String email;
