@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from "react";
 import {Layout, Menu} from "antd";
 import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
-import {getSiderMenu} from "../api/sider";
-const { Sider } = Layout;
+import {getSiderMenu} from "../../api/sider";
+const { Sider: Slider } = Layout;
 const { SubMenu } = Menu;
 
 
@@ -17,11 +17,10 @@ export default function SiderComponent() {
     })
 
     return (
-        <div className="SiderComponent">
-            <Layout style={{ minHeight: '100vh' }} >
-                <Sider  theme="light" collapsed={collapsed}>
+        <div className="SliderComponent">
+                <Slider style={{height: "100%"}} collapsed={collapsed}>
                     <div className="logo" />
-                    <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
+                    <Menu style={{height: "100%"}} defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             Option 1
                         </Menu.Item>
@@ -45,8 +44,7 @@ export default function SiderComponent() {
                             Files
                         </Menu.Item>
                     </Menu>
-                </Sider>
-            </Layout>
+                </Slider>
         </div>
     )
 }
