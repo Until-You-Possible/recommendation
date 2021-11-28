@@ -8,10 +8,10 @@ const { SubMenu } = Menu;
 
 export default function SiderComponent() {
 
-    const [collapsed, setCollapsed ] = useState(false);
+    const [collapsed] = useState(false);
 
     useEffect(() => {
-        const result = getSiderMenu({}).then(res => {
+        getSiderMenu({}).then(res => {
             console.log("res", res);
         });
     })
@@ -20,7 +20,7 @@ export default function SiderComponent() {
         <div className="SliderComponent">
                 <Slider style={{height: "100%"}} collapsed={collapsed}>
                     <div className="logo" />
-                    <Menu style={{height: "100%"}} defaultSelectedKeys={['1']} mode="inline">
+                    <Menu theme="dark" style={{height: "100%"}} defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             Option 1
                         </Menu.Item>
