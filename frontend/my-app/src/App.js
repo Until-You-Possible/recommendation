@@ -2,13 +2,18 @@
 import 'antd/dist/antd.css';
 import './App.css';
 import PcHomeComponent from "./view/pc/home"
-import { BrowserRouter as Router,} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes,} from "react-router-dom";
+import Login from "./view/pc/login";
+import * as React from "react";
 
 function App() {
   return (
       <Router>
           <div className="App">
-              <PcHomeComponent />
+              <Routes>
+                  <Route path="/home" element={<PcHomeComponent />} />
+                  <Route path="/login" element={<Login />} />
+              </Routes>
           </div>
       </Router>
   );

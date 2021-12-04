@@ -2,3 +2,42 @@
 .SiderComponent .ant-layout-sider {
     height: 100%;
 }
+
+.PcLoginContainer {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("../../asset/images/selfLogo.jpeg");
+    background-size: 100% 100%;
+    position: relative;
+    text-align: left;
+}
+
+.PcLoginContainer .centerWrapper {
+    width: 500px;
+    height: 400px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
+    padding: 2rem;
+
+}
+
+.centerWrapper .login-form-button {
+    width: 100%;
+}
+.centerWrapper .headerImage{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 100px;
+    /*margin-top: 1rem;*/
+    margin-bottom: 2rem;
+    /*border: 1px solid;*/
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../../asset/images/selfLogo.jpeg");
+}

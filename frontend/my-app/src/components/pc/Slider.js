@@ -1,10 +1,11 @@
 import React, { useState, useEffect} from "react";
-import {Layout, Menu} from "antd";
-import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
-import {getSiderMenu} from "../../api/sider";
+import {Image, Layout, Menu} from "antd";
+import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { getSiderMenu } from "../../api/sider";
+import "../../style/pc.css"
+import logoURL from "../../asset/images/selfLogo.jpeg"
 const { Sider: Slider } = Layout;
 const { SubMenu } = Menu;
-
 
 export default function SiderComponent() {
 
@@ -19,7 +20,9 @@ export default function SiderComponent() {
     return (
         <div className="SliderComponent">
                 <Slider style={{height: "100%"}} collapsed={collapsed}>
-                    <div className="logo" />
+                    <div className="logo">
+                        <Image className="innerImage" src={logoURL} />
+                    </div>
                     <Menu theme="dark" style={{height: "100%"}} defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             Option 1

@@ -12,7 +12,6 @@ export default function MobileHome() {
                 <Header />
                 <Routes>
                     <Route path= "/home" exact element={<Section />} />
-                    <Route path="/login" element={<Login />} />
                 </Routes>
                 <Footer />
             </div>
