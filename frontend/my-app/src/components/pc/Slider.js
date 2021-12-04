@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from "react";
 import {Image, Layout, Menu} from "antd";
 import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
-import { getSiderMenu } from "../../api/sider";
 import "../../style/pc.css"
 import logoURL from "../../asset/images/selfLogo.jpeg"
 const { Sider: Slider } = Layout;
@@ -12,9 +11,9 @@ export default function SiderComponent() {
     const [collapsed] = useState(false);
 
     useEffect(() => {
-        getSiderMenu({}).then(res => {
-            console.log("res", res);
-        });
+        // getSiderMenu({}).then(res => {
+        //     console.log("res", res);
+        // });
     })
 
     return (

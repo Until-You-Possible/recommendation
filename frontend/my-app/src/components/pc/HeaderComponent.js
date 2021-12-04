@@ -1,14 +1,31 @@
 import React from "react";
 import { Col, Dropdown, Menu, Row, Layout, Button } from "antd";
+import { getLogOut } from "../../api/pc";
+import { useNavigate } from "react-router-dom";
 const { Header } = Layout;
-const menu = (
-    <Menu>
-        <Menu.Item key="0">
-            <a href="https://www.antgroup.com">退出</a>
-        </Menu.Item>
-    </Menu>
-);
+
+
+
+
 export default function HeaderComponent() {
+    const navigate = useNavigate();
+    const  onClickMenu = (item) => {
+        if (item.key === "0") {
+            // 退出
+            getLogOut().then(res => {
+                if (res.status === "success") {
+                    navigate("/login")
+                }
+            });
+        }
+    }
+    const menu = (
+        <Menu onClick={onClickMenu}>
+            <Menu.Item key="0">
+                退出
+            </Menu.Item>
+        </Menu>
+    );
     return (
         <div>
             <Header className="site-layout-background" style={{ padding: 0 }} >
