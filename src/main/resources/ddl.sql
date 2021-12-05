@@ -13,7 +13,7 @@ CREATE TABLE `dianpingDB`.`user` (
 
 CREATE TABLE `dianpingDB`.`seller` (
                                        `id` INT NOT NULL,
-                                       `name` VARCHAR(45) NOT NULL,
+                                       `name` VARCHAR(45) NOT NULL AUTO_INCREMENT,
                                        `created_at` DATETIME NOT NULL,
                                        `updated_at` DATETIME NOT NULL,
                                        `disable_flag` INT NOT NULL DEFAULT 0,
