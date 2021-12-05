@@ -3,7 +3,7 @@ package com.dianping.controller.admin;
 
 import com.dianping.core.UnifyResponseSuccess;
 import com.dianping.dto.AdminInfoDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +17,21 @@ import java.util.Map;
 @RequestMapping("/admin/admin")
 public class AdminController {
 
-    @Autowired
-    private HttpServletRequest httpServletRequest;
-
     public static String CURRENT_USER_INFO = "CURRENT_USER_INFO";
+
+
+    private final HttpServletRequest httpServletRequest;
+    private final UserService userService;
+    public AdminController(HttpServletRequest httpServletRequest, UserService userService) {
+        this.httpServletRequest = httpServletRequest;
+        this.userService = userService;
+    }
 
     @Value("${admin.email}")
     private String email;
     @Value("${admin.password}")
     private String password;
+
 
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody AdminInfoDTO adminInfo) {
@@ -50,6 +56,11 @@ public class AdminController {
     public UnifyResponseSuccess logOut() {
         httpServletRequest.getSession().invalidate();
         return UnifyResponseSuccess.create(null);
+    }
+
+    @GetMapping("/getCount")
+    public Integer countAllUser() {
+        return userService.countAllUser();
     }
 
 }

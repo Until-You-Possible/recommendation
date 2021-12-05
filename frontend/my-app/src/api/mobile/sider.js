@@ -1,4 +1,4 @@
- import { get } from "../util/http";
+ import { get } from "../../util/http";
 
  /**
   *  getSiderMenu

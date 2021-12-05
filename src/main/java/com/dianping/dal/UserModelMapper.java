@@ -53,4 +53,6 @@ public interface UserModelMapper {
     int updateByPrimaryKey(UserModel record);
 
     UserModel selectByPasswordAndTelePhone(@Param("telephone") String telephone, @Param("password")String password);
+
+    Integer countAllUser();
 }

@@ -86,4 +86,6 @@ public class UserController {
         return (UserModel) httpServletRequest.getSession().getAttribute(CURRENT_USER_SESSION);
     }
 
+
+
 }
