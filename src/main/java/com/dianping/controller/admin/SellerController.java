@@ -37,4 +37,10 @@ public class SellerController {
         return UnifyResponseSuccess.create(sellerModel);
     }
 
+    @GetMapping("/checkCurrent")
+    public UnifyResponseSuccess getCurrent(@RequestParam(name = "id") Integer id) {
+        SellerModel sellerModel = sellerService.get(id);
+        return UnifyResponseSuccess.create(sellerModel);
+    }
+
 }
