@@ -26,6 +26,9 @@ export default function SiderComponent() {
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                              首页
                         </Menu.Item>
+                        <Menu.Item key="2" icon={<PieChartOutlined />}>
+                            商户
+                        </Menu.Item>
                     </Menu>
                 </Slider>
         </div>

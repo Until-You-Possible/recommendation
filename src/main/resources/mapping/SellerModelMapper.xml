@@ -101,6 +101,14 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from seller
+    order by id ASC
+  </select>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.dianping.model.SellerModel">
     <!--
       WARNING - @mbg.generated

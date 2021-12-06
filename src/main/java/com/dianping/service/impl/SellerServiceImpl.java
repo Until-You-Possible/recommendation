@@ -37,7 +37,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public List<SellerModel> selectAll() {
-        return null;
+        return sellerModelMapper.selectAll();
     }
 
     @Override
