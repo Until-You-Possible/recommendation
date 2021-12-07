@@ -1,8 +1,11 @@
 package com.dianping.service.impl;
 
+import com.dianping.core.BusinessException;
+import com.dianping.core.EmBusinessError;
 import com.dianping.dal.SellerModelMapper;
 import com.dianping.model.SellerModel;
 import com.dianping.service.SellerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +16,9 @@ import java.util.List;
 @Service
 public class SellerServiceImpl implements SellerService {
 
-    private final SellerModelMapper sellerModelMapper;
+    @Autowired
+    private  SellerModelMapper sellerModelMapper;
 
-    public SellerServiceImpl(SellerModelMapper sellerModelMapper) {
-        this.sellerModelMapper = sellerModelMapper;
-    }
 
     @Override
     @Transactional
@@ -41,7 +42,13 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public SellerModel changeStatus(Integer id, Integer disableFlag) {
-        return null;
+    public SellerModel changeStatus(Integer id, Integer disableFlag) throws BusinessException {
+        SellerModel sellerModel = get(id);
+        if (id == null) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        sellerModel.setDisableFlag(disableFlag);
+        sellerModelMapper.updateByPrimaryKey(sellerModel);
+        return sellerModel;
     }
 }
