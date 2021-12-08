@@ -1,7 +1,11 @@
 package com.dianping.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class CategoryDTO {
 
+    @NotBlank(message = "name不能为空")
     private String name;
 
     public String getName() {
@@ -28,6 +32,7 @@ public class CategoryDTO {
         this.iconUrl = iconUrl;
     }
 
+    @NotNull(message = "sort不能为空")
     private Integer sort;
     private String iconUrl;
 }
