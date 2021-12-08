@@ -19,3 +19,12 @@ CREATE TABLE `dianpingDB`.`seller` (
                                        `disable_flag` INT NOT NULL DEFAULT 0,
                                        `remark_score` INT NOT NULL DEFAULT 0,
                                        PRIMARY KEY (`id`));
+
+CREATE TABLE `dianpingDB`.`category` (
+                                         `id` INT NOT NULL AUTO_INCREMENT,
+                                         `name` VARCHAR(45) NOT NULL,
+                                         `created_at` DATETIME NOT NULL,
+                                         `updated_at` DATETIME NOT NULL,
+                                         `icon_url` VARCHAR(200) NOT NULL,
+                                         `sort` INT NOT NULL,
+                                         PRIMARY KEY (`id`));

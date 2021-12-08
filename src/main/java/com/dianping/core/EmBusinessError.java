@@ -13,7 +13,10 @@ public enum EmBusinessError {
 
     // 后台超级管理员没有登陆 ADMIN_SHOULD_LOGIN
     LOGIN_FAIL(20002,"手机号或密码错误"),
-    ADMIN_SHOULD_LOGIN(20003,"请登陆后台关系系统");
+    ADMIN_SHOULD_LOGIN(20003,"请登陆后台管理系统"),
+
+    // 品类相关
+    CATEGORY_NAME_DUPLICATED(40001, "品类名称已经存在");
 
     private Integer errCode;
 

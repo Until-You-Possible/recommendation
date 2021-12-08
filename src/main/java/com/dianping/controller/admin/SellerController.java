@@ -44,13 +44,13 @@ public class SellerController {
     }
     // 商户禁用
     @PostMapping("/down")
-    public UnifyResponseSuccess down(@RequestParam(value = "id") Integer id) {
+    public UnifyResponseSuccess down(@RequestParam(value = "id") Integer id) throws BusinessException {
         SellerModel sellerModel = sellerService.changeStatus(id, 1);
         return UnifyResponseSuccess.create(sellerModel);
     }
 
     @PostMapping("/up")
-    public UnifyResponseSuccess up(@RequestParam(value = "id") Integer id) {
+    public UnifyResponseSuccess up(@RequestParam(value = "id") Integer id) throws BusinessException {
         SellerModel sellerModel = sellerService.changeStatus(id, 0);
         return UnifyResponseSuccess.create(sellerModel);
     }
