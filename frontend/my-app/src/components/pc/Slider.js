@@ -3,6 +3,7 @@ import {Image, Layout, Menu} from "antd";
 import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import "../../style/pc.css"
 import logoURL from "../../asset/images/selfLogo.jpeg"
+import {Link} from "react-router-dom";
 const { Sider: Slider } = Layout;
 const { SubMenu } = Menu;
 
@@ -27,7 +28,10 @@ export default function SiderComponent() {
                              首页
                         </Menu.Item>
                         <Menu.Item key="2" icon={<PieChartOutlined />}>
-                            商户
+                            <Link to="/home/seller">商户</Link>
+                        </Menu.Item>
+                        <Menu.Item key="3" icon={<PieChartOutlined />}>
+                            <Link to="/home/category">品类</Link>
                         </Menu.Item>
                     </Menu>
                 </Slider>

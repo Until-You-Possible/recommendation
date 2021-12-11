@@ -9,9 +9,6 @@ export default function PcHomeComponent() {
         <Layout style={{ minHeight: '100vh' }}>
             <SliderComponent />
             <SectionComponent />
-            {/*<Routes>*/}
-            {/*    <Route path= "/home/info" element={<SectionComponent />} />*/}
-            {/*</Routes>*/}
         </Layout>
     )
 }
