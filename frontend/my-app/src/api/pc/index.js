@@ -1,4 +1,4 @@
-import { post } from "../../util/http";
+import { post, get } from "../../util/http";
 
 /**
  *  login
@@ -13,3 +13,11 @@ export const getLogin = (params) => post("/admin/admin/login", params)
  */
 
 export const getLogOut = () => post("/admin/admin/logout")
+
+
+/**
+ *  index component
+ *  get user count
+ */
+
+export const getUserCount = () => get("/admin/admin/getCount")

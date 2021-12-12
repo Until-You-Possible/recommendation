@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from "react";
 import {Image, Layout, Menu} from "antd";
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { PieChartOutlined } from "@ant-design/icons";
 import "../../style/pc.css"
 import logoURL from "../../asset/images/selfLogo.jpeg"
 import {Link} from "react-router-dom";
-const { Sider: Slider } = Layout;
-const { SubMenu } = Menu;
+const { Sider: SliderComponent } = Layout;
+// const { SubMenu } = Menu;
 
 export default function SiderComponent() {
 
@@ -19,7 +19,7 @@ export default function SiderComponent() {
 
     return (
         <div className="SliderComponent">
-                <Slider style={{height: "100%"}} collapsed={collapsed}>
+                <SliderComponent style={{height: "100%"}} collapsed={collapsed}>
                     <div className="logo">
                         <Image className="innerImage" src={logoURL} />
                     </div>
@@ -34,7 +34,7 @@ export default function SiderComponent() {
                             <Link to="/home/category">品类</Link>
                         </Menu.Item>
                     </Menu>
-                </Slider>
+                </SliderComponent>
         </div>
     )
 }

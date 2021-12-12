@@ -4,8 +4,6 @@ import './App.css';
 import PcHomeComponent from "./view/pc/home"
 import {BrowserRouter as Router, Route, Routes,} from "react-router-dom";
 import Login from "./view/pc/login";
-import SellerComponent from "./components/pc/Seller";
-import CategoryComponent from "./components/pc/Category";
 
 function App() {
   return (
