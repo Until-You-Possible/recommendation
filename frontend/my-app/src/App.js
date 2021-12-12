@@ -12,14 +12,7 @@ function App() {
       <Router>
           <div className="App">
               <Routes>
-                  <Route path="/home/index" element={<PcHomeComponent/>}/>
-                  <Route path="/home/index" render={() =>
-                      <PcHomeComponent>
-                          {/*<Route path="/home/index" element={<SellerComponent />} />*/}
-                          {/*<Route path="/home/seller" element={<SellerComponent />} />*/}
-                          {/*<Route path="/home/category" element={<CategoryComponent />} />*/}
-                      </PcHomeComponent>
-                  } />
+                  <Route path="/home/*" element={<PcHomeComponent/>}/>
                   <Route path="/login" element={<Login />} />
               </Routes>
           </div>

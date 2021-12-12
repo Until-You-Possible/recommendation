@@ -25,7 +25,7 @@ export default function SiderComponent() {
                     </div>
                     <Menu theme="dark" style={{height: "100%"}} defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
-                             首页
+                            <Link to="/home/index">首页</Link>
                         </Menu.Item>
                         <Menu.Item key="2" icon={<PieChartOutlined />}>
                             <Link to="/home/seller">商户</Link>
