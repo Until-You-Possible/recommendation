@@ -21,3 +21,39 @@ export const getLogOut = () => post("/admin/admin/logout")
  */
 
 export const getUserCount = () => get("/admin/admin/getCount")
+
+
+/**
+ * seller component
+ * add seller
+ */
+
+export const addSeller = (params) => post("/admin/seller/create_seller",  params)
+
+/**
+ * seller component
+ * get current seller
+ */
+
+export const getSeller = (params) => get("/admin/seller/checkCurrent", params)
+
+/**
+ * seller component
+ * get all seller
+ */
+
+export const getAllSeller = (params) => get("/admin/seller/getAllSeller", params)
+
+/**
+ * seller component
+ * down seller
+ */
+
+export const downSeller = (params) => post("/admin/seller/down", params)
+
+/**
+ * seller component
+ * up seller
+ */
+
+export const upSeller = (params) => post("/admin/seller/up")

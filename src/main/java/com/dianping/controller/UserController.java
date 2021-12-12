@@ -1,7 +1,7 @@
 package com.dianping.controller;
 
 
-import com.dianping.Until.Util;
+import com.dianping.until.util;
 import com.dianping.core.BusinessException;
 import com.dianping.core.EmBusinessError;
 import com.dianping.core.UnifyResponseSuccess;
@@ -51,7 +51,7 @@ public class UserController {
                                          BindingResult bindingResult)
             throws BusinessException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (bindingResult.hasErrors()) {
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, Util.processErrorString(bindingResult));
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, util.processErrorString(bindingResult));
         }
         UserModel registerUser = new UserModel();
         registerUser.setGender(userModelDTO.getGender());
@@ -65,7 +65,7 @@ public class UserController {
     @RequestMapping("/login")
     public UnifyResponseSuccess login(@RequestBody UserLoginDTO userLoginDTO, BindingResult bindingResult) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         if (bindingResult.hasErrors()) {
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, Util.processErrorString(bindingResult));
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, util.processErrorString(bindingResult));
         }
         UserModel userModel =  userService.login(userLoginDTO.getTelephone(), userLoginDTO.getPassword());
         // if user login successfully

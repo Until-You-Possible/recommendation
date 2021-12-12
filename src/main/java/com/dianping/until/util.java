@@ -1,9 +1,9 @@
-package com.dianping.Until;
+package com.dianping.until;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-public class Util {
+public class util {
     public static String processErrorString(BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
             return "";

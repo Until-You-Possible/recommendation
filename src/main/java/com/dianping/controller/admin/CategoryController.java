@@ -1,6 +1,6 @@
 package com.dianping.controller.admin;
 
-import com.dianping.Until.Util;
+import com.dianping.until.util;
 import com.dianping.core.BusinessException;
 import com.dianping.core.EmBusinessError;
 import com.dianping.core.UnifyResponseSuccess;
@@ -8,7 +8,6 @@ import com.dianping.dto.CategoryDTO;
 import com.dianping.model.CategoryModel;
 import com.dianping.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +26,7 @@ public class CategoryController {
     @PostMapping("/creat")
     public UnifyResponseSuccess creat(@Valid @RequestBody CategoryDTO categoryDTO, BindingResult bindingResult) throws BusinessException {
         if (bindingResult.hasErrors()) {
-            throw  new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,  Util.processErrorString(bindingResult));
+            throw  new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,  util.processErrorString(bindingResult));
         }
         CategoryModel categoryModel = new CategoryModel();
         categoryModel.setName(categoryDTO.getName());
