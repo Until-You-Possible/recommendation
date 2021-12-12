@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input, message, Modal, Switch, Table} from "antd";
+import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import {addSeller, getAllSeller} from "../../api/pc";
+import {addSeller, downSeller, getAllSeller} from "../../api/pc";
 import "./style/sellerComponent.scss"
 
 export  default  function SellerComponent() {
@@ -29,20 +29,19 @@ export  default  function SellerComponent() {
                 setIsModalVisible(false);
                 message.info('商家创建成功').then(r => null);
                 addForm.resetFields();
+                // reload table
+                getTable();
+
             }
         });
     }
 
     // Table
-    const handlerDisabledChange = (record, e) => {
-        console.log("record", record);
-        console.log("e", e);
-    }
     const columns = [
         {
             title: 'ID',
             dataIndex: 'id',
-            key: 1,
+            key: "id",
             align: 'center'
         },
         {
@@ -65,9 +64,7 @@ export  default  function SellerComponent() {
             render: (_, record) => {
                 return (
                     <span>
-                        <Button>
-                            {record.disableFlag ? '启用' : '禁用'}
-                        </Button>
+                        {record.disableFlag ? '启用' : '禁用'}
                     </span>
                 )
             }
@@ -80,36 +77,62 @@ export  default  function SellerComponent() {
             render: (_, record) => {
                 return (
                     <span>
-                        <Button type={record.disabledFlag === 1 ? 'danger': 'primary'}>
-                            {record.disabledFlag === 1 ? '禁用' : '启用'}
-                        </Button>
+                        <Popconfirm title="确定要执行此操作吗?" onConfirm={() => handleCurrentOperation(record)}>
+                            <Button type="primary"
+                                    danger={!!record.disableFlag}>
+                                {record.disableFlag ? '禁用' : '启用'}
+                            </Button>
+                        </Popconfirm>
                     </span>
                 )
             }
         },
     ];
 
+    let handleCurrentOperation = (record) => {
+        // 确定执行操作
+        if (record) {
+            let id = record.id;
+            downSeller({id}).then(res => {
+                console.log("res", res);
+            })
+        }
+
+    }
+
     let [dataSource, setDataSource] = useState([])
 
-    useEffect(() => {
-        // get all seller
+    let [tableLoad, setTableLoad] = useState(true);
+
+    // 获取列表
+    const getTable = () => {
         getAllSeller().then(res => {
+            setTableLoad(true);
             if (res.status === "success") {
                 setDataSource(res.data);
+                setTimeout(() => {
+                    setTableLoad(false);
+                },1500);
             }
         });
+    }
+    useEffect(() => {
+        getTable();
     }, []);
 
     return (
         <div className="sellerWrapper">
+             {/*layout start*/}
               <div className="title">商家管理</div>
               <div className="buttonLayout">
                   <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>新增商家</Button>
               </div>
+            {/*layout end*/}
 
             {/*Table start */}
             <div className="tableWrapper">
                 <Table scroll={{ y: "54vh" }}
+                       loading={tableLoad}
                        rowKey={(record) => record.id }
                        pagination={{pageSize:10}}
                        bordered
