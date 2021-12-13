@@ -49,11 +49,11 @@ export const getAllSeller = (params) => get("/admin/seller/getAllSeller", params
  * down seller
  */
 
-export const downSeller = (params) => post("/admin/seller/down", params)
+export const downSeller = (params) => get("/admin/seller/down", params)
 
 /**
  * seller component
  * up seller
  */
 
-export const upSeller = (params) => post("/admin/seller/up")
+export const upSeller = (params) => get("/admin/seller/up", params)

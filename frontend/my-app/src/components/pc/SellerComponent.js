@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import {addSeller, downSeller, getAllSeller} from "../../api/pc";
+import {addSeller, downSeller, getAllSeller, upSeller} from "../../api/pc";
 import "./style/sellerComponent.scss"
 
 export  default  function SellerComponent() {
@@ -92,10 +92,21 @@ export  default  function SellerComponent() {
     let handleCurrentOperation = (record) => {
         // 确定执行操作
         if (record) {
-            let id = record.id;
-            downSeller({id}).then(res => {
-                console.log("res", res);
-            })
+            if (record.disableFlag) {
+                downSeller({id: record.id}).then(res => {
+                    if (res.status === "success") {
+                        getTable();
+                    }
+                });
+            } else {
+                console.log("record", record);
+                upSeller({id: record.id}).then(res => {
+                    if (res.status === "success") {
+                        getTable();
+                    }
+                });
+            }
+
         }
 
     }
@@ -122,6 +133,7 @@ export  default  function SellerComponent() {
 
     return (
         <div className="sellerWrapper">
+
              {/*layout start*/}
               <div className="title">商家管理</div>
               <div className="buttonLayout">
