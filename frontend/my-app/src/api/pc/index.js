@@ -57,3 +57,27 @@ export const downSeller = (params) => get("/admin/seller/down", params)
  */
 
 export const upSeller = (params) => get("/admin/seller/up", params)
+
+
+/**
+ *  add new category
+ *
+ */
+
+export const addCategory = (params) => post("/admin/category/creat", params)
+
+
+/**
+ *  get current category
+ *
+ */
+
+export const getCurrentCategory = (params) => get("/admin/category/get_current", params)
+
+
+/**
+ *  get current category
+ *
+ */
+
+export const getCategoryList = (params) => get("/admin/category/get_all_category", params)

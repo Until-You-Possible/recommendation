@@ -124,6 +124,8 @@ export  default  function SellerComponent() {
                 setTimeout(() => {
                     setTableLoad(false);
                 },1500);
+            } else {
+                setTableLoad(true);
             }
         });
     }
