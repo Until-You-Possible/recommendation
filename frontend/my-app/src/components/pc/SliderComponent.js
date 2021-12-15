@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import {Image, Layout, Menu} from "antd";
-import { PieChartOutlined } from "@ant-design/icons";
+import {AppstoreOutlined, BankOutlined, PieChartOutlined} from "@ant-design/icons";
 import "../../style/pc.css"
 import logoURL from "../../asset/images/selfLogo.jpeg"
 import {Link} from "react-router-dom";
@@ -27,10 +27,10 @@ export default function SiderComponent() {
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             <Link to="/home/index">首页</Link>
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<PieChartOutlined />}>
+                        <Menu.Item key="2" icon={<BankOutlined />}>
                             <Link to="/home/seller">商户</Link>
                         </Menu.Item>
-                        <Menu.Item key="3" icon={<PieChartOutlined />}>
+                        <Menu.Item key="3" icon={<AppstoreOutlined />}>
                             <Link to="/home/category">品类</Link>
                         </Menu.Item>
                     </Menu>

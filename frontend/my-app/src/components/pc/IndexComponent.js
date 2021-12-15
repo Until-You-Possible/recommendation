@@ -34,38 +34,7 @@ export default function IndexComponent() {
                     </Card>
                 </Col>
 
-                <Col span={6}>
-                    <Card
-                        hoverable
-                        cover={<img alt="info" src={imgURL} />}
-                        title="注册用户数量">
-                        <div className="innerNumber">
-                            {!userCount ? <Spin /> : userCount}
-                        </div>
-                    </Card>
-                </Col>
 
-                <Col span={6}>
-                    <Card
-                        hoverable
-                        cover={<img alt="info" src={imgURL} />}
-                        title="注册用户数量">
-                        <div className="innerNumber">
-                            {!userCount ? <Spin /> : userCount}
-                        </div>
-                    </Card>
-                </Col>
-
-                <Col span={6}>
-                    <Card
-                        hoverable
-                        cover={<img alt="info" src={imgURL} />}
-                        title="注册用户数量">
-                        <div className="innerNumber">
-                            {!userCount ? <Spin /> : userCount}
-                        </div>
-                    </Card>
-                </Col>
             </Row>
         </div>
     )
