@@ -6,6 +6,7 @@ import {Route, Routes } from "react-router-dom";
 import SellerComponent from "./SellerComponent";
 import CategoryComponent from "./CategoryComponent";
 import IndexComponent from "./IndexComponent";
+import ShopComponent from "./ShopCommonent";
 export default function SectionComponent() {
     return (
         <Layout className="site-layout">
@@ -16,6 +17,7 @@ export default function SectionComponent() {
                         <Route path="/index/*" element={<IndexComponent/>} />
                         <Route path="/seller/*" element={<SellerComponent/>} />
                         <Route path="/category/*" element={<CategoryComponent/>} />
+                        <Route path="/shop/*" element={<ShopComponent/>} />
                     </Routes>
                 </div>
             </Content>

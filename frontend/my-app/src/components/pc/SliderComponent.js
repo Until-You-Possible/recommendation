@@ -28,10 +28,13 @@ export default function SiderComponent() {
                             <Link to="/home/index">首页</Link>
                         </Menu.Item>
                         <Menu.Item key="2" icon={<BankOutlined />}>
-                            <Link to="/home/seller">商户</Link>
+                            <Link to="/home/seller">商户查询</Link>
                         </Menu.Item>
                         <Menu.Item key="3" icon={<AppstoreOutlined />}>
-                            <Link to="/home/category">品类</Link>
+                            <Link to="/home/category">品类查询</Link>
+                        </Menu.Item>
+                        <Menu.Item key="4" icon={<AppstoreOutlined />}>
+                            <Link to="/home/shop">门店服务</Link>
                         </Menu.Item>
                     </Menu>
                 </SliderComponent>
