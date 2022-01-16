@@ -1,17 +1,17 @@
 // let routes;
-export default routes = [
+export const routesMenu = [
     {
         id: 1,
-        path: "/",
+        path: "/index",
         name: "首页",
         icon: ""
     },
-    {
-        id: 2,
-        path: "/login",
-        name: "登陆",
-        icon: ""
-    },
+    // {
+    //     id: 2,
+    //     path: "/login",
+    //     name: "登陆",
+    //     icon: ""
+    // },
     {
         id: 3,
         path: "/category",
