@@ -16,7 +16,7 @@ export default function SiderComponent() {
         // getSiderMenu({}).then(res => {
         //     console.log("res", res);
         // });
-    })
+    });
 
     return (
         <div className="SliderComponent">

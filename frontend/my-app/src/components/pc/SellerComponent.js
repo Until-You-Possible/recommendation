@@ -3,6 +3,7 @@ import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import {addSeller, downSeller, getAllSeller, upSeller} from "../../api/pc";
 import "./style/sellerComponent.scss"
+import PublicTable from "../common/Table";
 
 export  default  function SellerComponent() {
 
@@ -30,7 +31,7 @@ export  default  function SellerComponent() {
                 message.info('商家创建成功').then(r => null);
                 addForm.resetFields();
                 // reload table
-                getTable();
+                // getTable();
 
             }
         });
@@ -95,14 +96,14 @@ export  default  function SellerComponent() {
             if (record.disableFlag) {
                 downSeller({id: record.id}).then(res => {
                     if (res.status === "success") {
-                        getTable();
+                        // getTable();
                     }
                 });
             } else {
                 console.log("record", record);
                 upSeller({id: record.id}).then(res => {
                     if (res.status === "success") {
-                        getTable();
+                        // getTable();
                     }
                 });
             }
@@ -110,28 +111,6 @@ export  default  function SellerComponent() {
         }
 
     }
-
-    let [dataSource, setDataSource] = useState([])
-
-    let [tableLoad, setTableLoad] = useState(true);
-
-    // 获取列表
-    const getTable = () => {
-        getAllSeller().then(res => {
-            setTableLoad(true);
-            if (res.status === "success") {
-                setDataSource(res.data);
-                setTimeout(() => {
-                    setTableLoad(false);
-                },1500);
-            } else {
-                setTableLoad(true);
-            }
-        });
-    }
-    useEffect(() => {
-        getTable();
-    }, []);
 
     return (
         <div className="sellerWrapper">
@@ -143,17 +122,9 @@ export  default  function SellerComponent() {
               </div>
             {/*layout end*/}
 
-            {/*Table start */}
-            <div className="tableWrapper">
-                <Table scroll={{ y: "54vh" }}
-                       loading={tableLoad}
-                       rowKey={(record) => record.id }
-                       pagination={{pageSize:10}}
-                       bordered
-                       dataSource={dataSource}
-                       columns={columns} />
-            </div>
-            {/*Table end */}
+            <PublicTable
+                api = {getAllSeller}
+                columns = {columns} />
 
             {/*Modal start*/}
             <Modal title="新增商家" visible={isModalVisible}

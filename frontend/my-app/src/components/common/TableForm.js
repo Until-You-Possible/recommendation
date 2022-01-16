@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {message, Table} from "antd";
+import {addCategory, getCategoryList} from "../../api/pc";
 
 
 // 实现目标
@@ -8,9 +10,10 @@ import React from "react";
 // 数据的回填
 
 export default function TableForm() {
+
     return (
-        <div>
-            this is table form
+        <div className="table-form-wrapper">
+            this table form
         </div>
     )
 }

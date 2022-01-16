@@ -3,6 +3,7 @@ import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import {addCategory, getCategoryList} from "../../api/pc";
 import "./style/categoryComponent.scss"
+import PublicTable from "../common/Table";
 export  default  function CategoryComponent() {
 
     const [isModalVisibleCategory, setIsModalVisibleCategory] = useState(false);
@@ -17,19 +18,10 @@ export  default  function CategoryComponent() {
         addForm.submit();
     };
 
-    useEffect(() => {
-        getTable();
-    }, [])
-
     const handleCancel = () => {
         setIsModalVisibleCategory(false);
         addForm.resetFields();
     };
-
-    let [tableLoad, setTableLoad] = useState(true);
-
-    let [dataSource, setDataSource] = useState([])
-
 
     const onFinish = (values) => {
         addCategory(values).then(res => {
@@ -37,23 +29,6 @@ export  default  function CategoryComponent() {
                 setIsModalVisibleCategory(false);
                 message.info('品类创建成功').then(r => null);
                 addForm.resetFields();
-                // reload table
-                getTable();
-
-            }
-        });
-    }
-
-    const getTable = () => {
-        getCategoryList().then(res => {
-            setTableLoad(true);
-            if (res.status === "success") {
-                setDataSource(res.data);
-                setTimeout(() => {
-                    setTableLoad(false);
-                },1500);
-            } else {
-                setTableLoad(true);
             }
         });
     }
@@ -94,69 +69,9 @@ export  default  function CategoryComponent() {
             </div>
             {/*layout end*/}
 
-            {/*Table start */}
-            <div className="tableWrapper">
-                <Table scroll={{ y: "54vh" }}
-                       loading={tableLoad}
-                       rowKey={(record) => record.id }
-                       pagination={{pageSize:10}}
-                       bordered
-                       dataSource={dataSource}
-                       columns={columnsCategory} />
-            </div>
-            {/*Table end */}
-
-            {/*Modal start*/}
-            <Modal title="新增品类" visible={isModalVisibleCategory}
-                   okText="创建"
-                   cancelText="取消"
-                   onOk={handleOk}
-                   onCancel={handleCancel}>
-                <Form
-                    form={addForm}
-                    name="normal_login"
-                    size="large"
-                    className="seller-form"
-                    autoComplete="off"
-                    onFinish={onFinish}
-                >
-                    <Form.Item
-                        name="name"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请输入品类名称!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请输入品类名称" />
-                    </Form.Item>
-                    <Form.Item
-                        name="iconUrl"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请选择品类icon!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请选择品类icon" />
-                    </Form.Item>
-                    <Form.Item
-                        name="sort"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请输入权重!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请输入权重" />
-                    </Form.Item>
-
-                </Form>
-            </Modal>
-            {/*Modal end*/}
+            <PublicTable
+                api = {getCategoryList}
+                columns = {columnsCategory} />
 
         </div>
     )

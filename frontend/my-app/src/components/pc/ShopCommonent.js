@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
-import {addSeller, downSeller, getAllSeller, upSeller} from "../../api/pc";
+import { getShopList } from "../../api/pc";
+import PublicTable from "../common/Table";
 
 export default function ShopComponent() {
 
@@ -22,18 +23,12 @@ export default function ShopComponent() {
         addForm.resetFields();
     };
 
-    const onFinish = (values) => {
-        addSeller(values).then(res => {
-            if (res.status === "success") {
-                setIsModalVisible(false);
-                message.info('门店创建成功').then(r => null);
-                addForm.resetFields();
-                // reload table
-                getTable();
+    function handleCurrentOperation() {
 
-            }
-        });
     }
+
+    function onFinish() {}
+
 
     // Table
     const columns = [
@@ -88,49 +83,7 @@ export default function ShopComponent() {
         },
     ];
 
-    let handleCurrentOperation = (record) => {
-        // 确定执行操作
-        if (record) {
-            if (record.disableFlag) {
-                downSeller({id: record.id}).then(res => {
-                    if (res.status === "success") {
-                        getTable();
-                    }
-                });
-            } else {
-                console.log("record", record);
-                upSeller({id: record.id}).then(res => {
-                    if (res.status === "success") {
-                        getTable();
-                    }
-                });
-            }
 
-        }
-
-    }
-
-    let [dataSource, setDataSource] = useState([])
-
-    let [tableLoad, setTableLoad] = useState(true);
-
-    // 获取列表
-    const getTable = () => {
-        getAllSeller().then(res => {
-            setTableLoad(true);
-            if (res.status === "success") {
-                setDataSource(res.data);
-                setTimeout(() => {
-                    setTableLoad(false);
-                },1500);
-            } else {
-                setTableLoad(true);
-            }
-        });
-    }
-    useEffect(() => {
-        getTable();
-    }, []);
     return (
         <div className="sellerWrapper">
 
@@ -141,19 +94,11 @@ export default function ShopComponent() {
             </div>
             {/*layout end*/}
 
-            {/*Table start */}
-            <div className="tableWrapper">
-                <Table scroll={{ y: "54vh" }}
-                       loading={tableLoad}
-                       rowKey={(record) => record.id }
-                       pagination={{pageSize:10}}
-                       bordered
-                       dataSource={dataSource}
-                       columns={columns} />
-            </div>
-            {/*Table end */}
+            <PublicTable
+                api = {getShopList}
+                columns = {columns}
+            />
 
-            {/*Modal start*/}
             <Modal title="新增门店" visible={isModalVisible}
                    okText="创建"
                    cancelText="取消"

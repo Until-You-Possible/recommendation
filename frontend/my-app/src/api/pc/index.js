@@ -81,3 +81,25 @@ export const getCurrentCategory = (params) => get("/admin/category/get_current",
  */
 
 export const getCategoryList = (params) => get("/admin/category/get_all_category", params)
+
+
+/**
+ *  get all shop
+ *
+ */
+
+export const getShopList = (params) => get("/admin/shop/get_all_shop", params)
+
+/**
+ *  get all shop
+ *
+ */
+
+export const getCurrentShop = (params) => get("/admin/shop/get_current", params)
+
+/**
+ *  create new shop
+ *
+ */
+
+export const createShop = (params) => post("/admin/shop/creat", params)
