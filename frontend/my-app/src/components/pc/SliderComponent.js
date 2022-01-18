@@ -13,9 +13,6 @@ export default function SiderComponent() {
     const [collapsed] = useState(false);
 
     useEffect(() => {
-        // getSiderMenu({}).then(res => {
-        //     console.log("res", res);
-        // });
     });
 
     return (

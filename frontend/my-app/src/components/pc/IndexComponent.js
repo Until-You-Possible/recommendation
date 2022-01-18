@@ -15,7 +15,7 @@ export default function IndexComponent() {
                     setUserCount(res)
                 }
             })
-        }, 3000)
+        }, 2000)
 
     });
 

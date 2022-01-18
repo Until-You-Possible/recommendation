@@ -33,7 +33,7 @@ export  default  function CategoryComponent() {
         });
     }
 
-    const columnsCategory = [
+    const columns = [
         {
             title: 'ID',
             dataIndex: 'id',
@@ -71,8 +71,7 @@ export  default  function CategoryComponent() {
 
             <PublicTable
                 api = {getCategoryList}
-                columns = {columnsCategory} />
-
+                columns = {columns} />
         </div>
     )
 }

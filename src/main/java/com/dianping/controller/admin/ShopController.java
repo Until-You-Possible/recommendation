@@ -51,7 +51,7 @@ public class ShopController {
         return UnifyResponseSuccess.create(shopModel);
     }
 
-    @GetMapping("/get_all_category")
+    @GetMapping("/get_all_shop")
     public UnifyResponseSuccess getAll() {
         List<ShopModel> shopModels = shopService.selectAll();
         return UnifyResponseSuccess.create(shopModels);

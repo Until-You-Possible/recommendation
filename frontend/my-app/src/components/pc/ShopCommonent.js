@@ -39,7 +39,7 @@ export default function ShopComponent() {
             align: 'center'
         },
         {
-            title: '商家名',
+            title: '图标',
             dataIndex: 'name',
             key: 2,
             align: 'center'
