@@ -1,12 +1,11 @@
 import React, { useState, useEffect} from "react";
 import {Image, Layout, Menu} from "antd";
-import {AppstoreOutlined, BankOutlined, PieChartOutlined} from "@ant-design/icons";
+import {PieChartOutlined} from "@ant-design/icons";
 import "../../style/pc.css"
 import logoURL from "../../asset/images/selfLogo.jpeg"
 import {Link} from "react-router-dom";
 import {routesMenu} from "../../route";
 const { Sider: SliderComponent } = Layout;
-// const { SubMenu } = Menu;
 
 export default function SiderComponent() {
 

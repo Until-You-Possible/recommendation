@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {Form, Input, message, Modal, Table} from "antd";
-import {addCategory, addSeller, getCategoryList} from "../../api/pc";
+import React from "react";
+import {Form, Input, message, Modal} from "antd";
+import {addSeller} from "../../api/pc";
 
 
 // 实现目标
@@ -11,7 +11,7 @@ import {addCategory, addSeller, getCategoryList} from "../../api/pc";
 
 export default function TableForm(props) {
 
-    const [addForm] = Form.useForm();
+    const [ addForm ] = Form.useForm();
 
     const handleOk = () => {
         props.handleOk();
@@ -23,45 +23,61 @@ export default function TableForm(props) {
         addForm.resetFields();
     };
 
+    const { refreshTable }  = props
     const onFinish = (values) => {
         addSeller(values).then(res => {
             if (res.status === "success") {
-                message.info('商家创建成功').then(r => null);
+                message.info('successfully~').then(r => null);
+                props.handleCancel()
                 addForm.resetFields();
-
+                refreshTable();
+            } else {
+                message.info('failed~').then(r => null);
             }
         });
+    }
+
+    const renderDiffComponent = (type) => {
+        if (type === "input") {
+            return (
+                <Input placeholder="请输入" />
+            )
+        }
+        return <Input placeholder="默认输入框" />
     }
 
 
     return (
         <div className="table-form-wrapper">
             {/*Modal start*/}
-            <Modal title={props.title} visible={props.visible}
-                   okText="创建"
-                   cancelText="取消"
-                   onOk={handleOk}
-                   onCancel={handleCancel}>
+            <Modal
+                getContainer={false}
+                forceRender
+                title={props.title}
+               visible={props.visible}
+               okText="创建"
+               cancelText="取消"
+               onOk={handleOk}
+               onCancel={handleCancel}>
                 <Form
                     form={addForm}
-                    name="normal_login"
                     size="large"
                     autoComplete="off"
                     onFinish={onFinish}
                 >
-                    <Form.Item
-                        name="name"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请输入商家名称!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请输入商家名称" />
-                    </Form.Item>
-
-
+                    {
+                        props.formColumn.map(item => {
+                            return (
+                                <Form.Item
+                                    key={item.id}
+                                    name={item.name}
+                                    rules={item.rules}
+                                >
+                                    { renderDiffComponent(item.type) }
+                                </Form.Item>
+                            )
+                        })
+                    }
                 </Form>
             </Modal>
             {/*Modal end*/}

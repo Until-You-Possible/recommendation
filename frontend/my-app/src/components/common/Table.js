@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useImperativeHandle, useState} from "react";
 
 import { Table } from "antd";
 
@@ -13,6 +13,17 @@ import { Table } from "antd";
 
 export default function PublicTable(props) {
 
+    useEffect(() => {
+        getTable();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useImperativeHandle(props.onRef, () => {
+        return {
+            getTable: getTable
+        }
+    });
+
     const getTable = () => {
         props.api().then(res => {
             setTableLoad(true);
@@ -26,10 +37,6 @@ export default function PublicTable(props) {
             }
         });
     }
-
-    useEffect(() => {
-        getTable();
-    }, [])
 
     let [tableLoad, setTableLoad] = useState(true);
 

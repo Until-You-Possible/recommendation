@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
+import {Button, Form} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
-import {addCategory, getCategoryList} from "../../api/pc";
+import { getCategoryList} from "../../api/pc";
 import "./style/categoryComponent.scss"
 import PublicTable from "../common/Table";
 import TableForm from "../common/TableForm";
 export  default  function CategoryComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-
+    let tableRef = React.createRef();
     const [ modelTitle ] = useState("新增品类");
     const [addForm] = Form.useForm();
 
@@ -25,14 +25,12 @@ export  default  function CategoryComponent() {
         addForm.resetFields();
     };
 
-    const onFinish = (values) => {
-        addCategory(values).then(res => {
-            if (res.status === "success") {
-                setIsModalVisible(false);
-                message.info('品类创建成功').then(r => null);
-                addForm.resetFields();
-            }
-        });
+    useEffect(() => {
+        refreshTable()
+    }, []);
+
+    const refreshTable = () => {
+        tableRef.current.getTable();
     }
 
     const columns = [
@@ -61,6 +59,21 @@ export  default  function CategoryComponent() {
             align: 'center',
         },
     ];
+
+    const formColumn = [
+        {
+            name: "name",
+            id: 1,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "请输入商家名称"
+                }
+            ]
+        }
+    ]
+
     return (
         <div className="categoryWrapper">
 
@@ -74,6 +87,7 @@ export  default  function CategoryComponent() {
             {/*Table component*/}
             <PublicTable
                 api = {getCategoryList}
+                onRef={tableRef}
                 columns = {columns} />
             {/*table component*/}
 
@@ -82,7 +96,9 @@ export  default  function CategoryComponent() {
                 visible = {isModalVisible}
                 handleOk={handleOk}
                 handleCancel={handleCancel}
+                refreshTable={refreshTable}
                 title={modelTitle}
+                formColumn={formColumn}
             />
             {/*model component*/}
 

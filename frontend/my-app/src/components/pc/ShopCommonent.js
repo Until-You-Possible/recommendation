@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
+import React, {useState} from "react";
+import {Button, Form, Input, Modal, Popconfirm} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import { getShopList } from "../../api/pc";
 import PublicTable from "../common/Table";

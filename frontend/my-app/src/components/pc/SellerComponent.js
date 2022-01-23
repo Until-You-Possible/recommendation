@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Button, Form, Input, message, Modal, Popconfirm, Table} from "antd";
+import React, {useState} from "react";
+import {Button, Form, Input, message, Modal, Popconfirm} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import {addSeller, downSeller, getAllSeller, upSeller} from "../../api/pc";
 import "./style/sellerComponent.scss"
