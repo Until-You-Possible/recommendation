@@ -4,14 +4,16 @@ import {PlusCircleOutlined} from "@ant-design/icons";
 import {addCategory, getCategoryList} from "../../api/pc";
 import "./style/categoryComponent.scss"
 import PublicTable from "../common/Table";
+import TableForm from "../common/TableForm";
 export  default  function CategoryComponent() {
 
-    const [isModalVisibleCategory, setIsModalVisibleCategory] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
+    const [ modelTitle ] = useState("新增品类");
     const [addForm] = Form.useForm();
 
     const showModal = () => {
-        setIsModalVisibleCategory(true);
+        setIsModalVisible(true);
     };
 
     const handleOk = () => {
@@ -19,14 +21,14 @@ export  default  function CategoryComponent() {
     };
 
     const handleCancel = () => {
-        setIsModalVisibleCategory(false);
+        setIsModalVisible(false);
         addForm.resetFields();
     };
 
     const onFinish = (values) => {
         addCategory(values).then(res => {
             if (res.status === "success") {
-                setIsModalVisibleCategory(false);
+                setIsModalVisible(false);
                 message.info('品类创建成功').then(r => null);
                 addForm.resetFields();
             }
@@ -69,9 +71,21 @@ export  default  function CategoryComponent() {
             </div>
             {/*layout end*/}
 
+            {/*Table component*/}
             <PublicTable
                 api = {getCategoryList}
                 columns = {columns} />
+            {/*table component*/}
+
+            {/*Model component*/}
+            <TableForm
+                visible = {isModalVisible}
+                handleOk={handleOk}
+                handleCancel={handleCancel}
+                title={modelTitle}
+            />
+            {/*model component*/}
+
         </div>
     )
 }
