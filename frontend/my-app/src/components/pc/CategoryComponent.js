@@ -26,7 +26,8 @@ export  default  function CategoryComponent() {
     };
 
     useEffect(() => {
-        refreshTable()
+        // refreshTable()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const refreshTable = () => {

@@ -1,13 +1,17 @@
 import React, {useState} from "react";
-import {Button, Form, Input, message, Modal, Popconfirm} from "antd";
+import {Button, Form, Popconfirm} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import {addSeller, downSeller, getAllSeller, upSeller} from "../../api/pc";
+import { downSeller, getAllSeller, upSeller} from "../../api/pc";
 import "./style/sellerComponent.scss"
 import PublicTable from "../common/Table";
+import TableForm from "../common/TableForm";
 
 export  default  function SellerComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [ modelTitle ] = useState("新增商户");
+
+    let tableRef = React.createRef();
 
     const [addForm] = Form.useForm();
 
@@ -18,24 +22,14 @@ export  default  function SellerComponent() {
     const handleOk = () => {
         addForm.submit();
     };
+    const refreshTable = () => {
+        tableRef.current.getTable();
+    }
 
     const handleCancel = () => {
         setIsModalVisible(false);
         addForm.resetFields();
     };
-
-    const onFinish = (values) => {
-        addSeller(values).then(res => {
-            if (res.status === "success") {
-                setIsModalVisible(false);
-                message.info('商家创建成功').then(r => null);
-                addForm.resetFields();
-                // reload table
-                // getTable();
-
-            }
-        });
-    }
 
     // Table
     const columns = [
@@ -90,6 +84,21 @@ export  default  function SellerComponent() {
         },
     ];
 
+    const formColumn = [
+        {
+            name: "name",
+            id: 1,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "请输入商家名称"
+                }
+            ]
+        }
+    ]
+
+
     let handleCurrentOperation = (record) => {
         // 确定执行操作
         if (record) {
@@ -118,7 +127,7 @@ export  default  function SellerComponent() {
              {/*layout start*/}
               <div className="title">商家管理</div>
               <div className="buttonLayout">
-                  <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>新增商家</Button>
+                  <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>新增商户</Button>
               </div>
             {/*layout end*/}
 
@@ -126,36 +135,16 @@ export  default  function SellerComponent() {
                 api = {getAllSeller}
                 columns = {columns} />
 
-            {/*Modal start*/}
-            <Modal title="新增商家" visible={isModalVisible}
-                   okText="创建"
-                   cancelText="取消"
-                   onOk={handleOk}
-                   onCancel={handleCancel}>
-                <Form
-                    form={addForm}
-                    name="normal_login"
-                    size="large"
-                    className="seller-form"
-                    autoComplete="off"
-                    onFinish={onFinish}
-                >
-                    <Form.Item
-                        name="name"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请输入商家名称!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请输入商家名称" />
-                    </Form.Item>
-
-
-                </Form>
-            </Modal>
-            {/*Modal end*/}
+            {/*Model component*/}
+            <TableForm
+                visible = {isModalVisible}
+                handleOk={handleOk}
+                handleCancel={handleCancel}
+                refreshTable={refreshTable}
+                title={modelTitle}
+                formColumn={formColumn}
+            />
+            {/*model component*/}
 
         </div>
     )

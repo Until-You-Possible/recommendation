@@ -1,18 +1,23 @@
 import React, {useState} from "react";
-import {Button, Form, Input, Modal, Popconfirm} from "antd";
+import {Button, Form, Popconfirm} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import { getShopList } from "../../api/pc";
 import PublicTable from "../common/Table";
+import TableForm from "../common/TableForm";
 
 export default function ShopComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const [ modelTitle ] = useState("新增门店");
 
     const [addForm] = Form.useForm();
 
     const showModal = () => {
         setIsModalVisible(true);
     };
+
+    let tableRef = React.createRef();
 
     const handleOk = () => {
         addForm.submit();
@@ -27,8 +32,9 @@ export default function ShopComponent() {
 
     }
 
-    function onFinish() {}
-
+    const refreshTable = () => {
+        tableRef.current.getTable();
+    }
 
     // Table
     const columns = [
@@ -83,6 +89,19 @@ export default function ShopComponent() {
         },
     ];
 
+    const formColumn = [
+        {
+            name: "name",
+            id: 1,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "请输入商家名称"
+                }
+            ]
+        }
+    ]
 
     return (
         <div className="sellerWrapper">
@@ -99,35 +118,16 @@ export default function ShopComponent() {
                 columns = {columns}
             />
 
-            <Modal title="新增门店" visible={isModalVisible}
-                   okText="创建"
-                   cancelText="取消"
-                   onOk={handleOk}
-                   onCancel={handleCancel}>
-                <Form
-                    form={addForm}
-                    name="normal_login"
-                    size="large"
-                    className="seller-form"
-                    autoComplete="off"
-                    onFinish={onFinish}
-                >
-                    <Form.Item
-                        name="name"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请输入商家名称!',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请输入商家名称" />
-                    </Form.Item>
-
-
-                </Form>
-            </Modal>
-            {/*Modal end*/}
+            {/*Model component*/}
+            <TableForm
+                visible = {isModalVisible}
+                handleOk={handleOk}
+                handleCancel={handleCancel}
+                refreshTable={refreshTable}
+                title={modelTitle}
+                formColumn={formColumn}
+            />
+            {/*model component*/}
 
         </div>
     )
