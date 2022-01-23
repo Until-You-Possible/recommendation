@@ -39,7 +39,15 @@ public class ShopController {
         shopModel.setPricePerMan(shopDTO.getPricePerMan());
         shopModel.setSellerId(shopDTO.getSellerId());
         shopService.create(shopModel);
-        return get(shopModel.getId());
+        return getItem(shopModel.getId());
+    }
+
+    public UnifyResponseSuccess getItem(Integer id) throws BusinessException {
+        ShopModel shopModel = shopService.get(id);
+        if (shopModel == null) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "查询不存在");
+        }
+        return UnifyResponseSuccess.create(shopModel);
     }
 
     @GetMapping("/get_current")

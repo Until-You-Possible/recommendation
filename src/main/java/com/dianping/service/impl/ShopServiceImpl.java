@@ -32,7 +32,7 @@ public class ShopServiceImpl implements ShopService {
         shopModel.setCreatedAt(new Date());
         shopModel.setUpdatedAt(new Date());
         // 检查商家商户正确
-        SellerModel sellerModel = sellerService.get(shopModel.getId());
+        SellerModel sellerModel = sellerService.get(shopModel.getSellerId());
         if (sellerModel == null) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "商户不存在");
 
@@ -45,7 +45,7 @@ public class ShopServiceImpl implements ShopService {
         // 对类目的校验
         CategoryModel categoryModel = categoryService.get(shopModel.getCategoryId());
         if (categoryModel == null) {
-            return null;
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "category 不存在");
         }
         shopModelMapper.insertSelective(shopModel);
         return get(shopModel.getId());
