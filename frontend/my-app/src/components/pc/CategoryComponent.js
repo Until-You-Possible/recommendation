@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Button, Form} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
-import { getCategoryList} from "../../api/pc";
+import { getCategoryList, addCategory} from "../../api/pc";
 import "./style/categoryComponent.scss"
 import PublicTable from "../common/Table";
 import TableForm from "../common/TableForm";
@@ -9,7 +9,7 @@ export  default  function CategoryComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     let tableRef = React.createRef();
-    const [ modelTitle ] = useState("新增品类");
+    const [ modelTitle ] = useState("Add New Category");
     const [addForm] = Form.useForm();
 
     const showModal = () => {
@@ -31,7 +31,7 @@ export  default  function CategoryComponent() {
     }, []);
 
     const refreshTable = () => {
-        tableRef.current.getTable();
+        // tableRef.current.getTable();
     }
 
     const columns = [
@@ -42,7 +42,7 @@ export  default  function CategoryComponent() {
             align: 'center'
         },
         {
-            title: '品类名',
+            title: 'category name',
             dataIndex: 'name',
             key: 2,
             align: 'center'
@@ -54,7 +54,7 @@ export  default  function CategoryComponent() {
             align: 'center'
         },
         {
-            title: '排序权重',
+            title: 'sort',
             dataIndex: 'sort',
             key: 4,
             align: 'center',
@@ -69,19 +69,44 @@ export  default  function CategoryComponent() {
             rules: [
                 {
                     required: true,
-                    message: "请输入商家名称"
+                    message: "Enter category name"
+                }
+            ]
+        },
+        {
+            name: "icon_url",
+            id: 2,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter category icon url"
+
+                }
+            ]
+        },
+        {
+            name: "sort",
+            id: 3,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter category sort"
+
                 }
             ]
         }
+
     ]
 
     return (
         <div className="categoryWrapper">
 
             {/*layout start*/}
-            <div className="title">品类管理</div>
+            <div className="title">CATEGORY LIST</div>
             <div className="buttonLayout">
-                <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>新增品类</Button>
+                <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>Add</Button>
             </div>
             {/*layout end*/}
 
@@ -95,6 +120,7 @@ export  default  function CategoryComponent() {
             {/*Model component*/}
             <TableForm
                 visible = {isModalVisible}
+                api = {addCategory}
                 handleOk={handleOk}
                 handleCancel={handleCancel}
                 refreshTable={refreshTable}

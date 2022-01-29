@@ -9,7 +9,7 @@ export default function ShopComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const [ modelTitle ] = useState("新增门店");
+    const [ modelTitle ] = useState("Add New Shop");
 
     const [addForm] = Form.useForm();
 
@@ -45,42 +45,42 @@ export default function ShopComponent() {
             align: 'center'
         },
         {
-            title: '图标',
+            title: 'icon',
             dataIndex: 'name',
             key: 2,
             align: 'center'
         },
         {
-            title: '评分',
+            title: 'score',
             dataIndex: 'remarkScore',
             key: 3,
             align: 'center'
         },
         {
-            title: '状态',
+            title: 'status',
             dataIndex: 'disabledFlag',
             key: 4,
             align: 'center',
             render: (_, record) => {
                 return (
                     <span>
-                        {record.disableFlag ? '启用' : '禁用'}
+                        {record.disableFlag ? 'open' : 'disabled'}
                     </span>
                 )
             }
         },
         {
-            title: '操作',
+            title: 'opeartion',
             dataIndex: 'operation',
             key: 5,
             align: 'center',
             render: (_, record) => {
                 return (
                     <span>
-                        <Popconfirm title="确定要执行此操作吗?" onConfirm={() => handleCurrentOperation(record)}>
+                        <Popconfirm title="Confirm?" onConfirm={() => handleCurrentOperation(record)}>
                             <Button type="primary"
                                     danger={!!record.disableFlag}>
-                                {record.disableFlag ? '禁用' : '启用'}
+                                {record.disableFlag ? 'disabled' : 'open'}
                             </Button>
                         </Popconfirm>
                     </span>
@@ -97,7 +97,7 @@ export default function ShopComponent() {
             rules: [
                 {
                     required: true,
-                    message: "请输入商家名称"
+                    message: "Enter"
                 }
             ]
         }
@@ -107,9 +107,9 @@ export default function ShopComponent() {
         <div className="sellerWrapper">
 
             {/*layout start*/}
-            <div className="title">门店管理</div>
+            <div className="title">SHOP LIST</div>
             <div className="buttonLayout">
-                <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>新增门店</Button>
+                <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>Add</Button>
             </div>
             {/*layout end*/}
 

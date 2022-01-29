@@ -9,7 +9,7 @@ import TableForm from "../common/TableForm";
 export  default  function SellerComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [ modelTitle ] = useState("新增商户");
+    const [ modelTitle ] = useState("Add New Seller");
 
     let tableRef = React.createRef();
 
@@ -40,42 +40,42 @@ export  default  function SellerComponent() {
             align: 'center'
         },
         {
-            title: '商家名',
+            title: 'seller name',
             dataIndex: 'name',
             key: 2,
             align: 'center'
         },
         {
-            title: '评分',
+            title: 'score',
             dataIndex: 'remarkScore',
             key: 3,
             align: 'center'
         },
         {
-            title: '状态',
+            title: 'status',
             dataIndex: 'disabledFlag',
             key: 4,
             align: 'center',
             render: (_, record) => {
                 return (
                     <span>
-                        {record.disableFlag ? '启用' : '禁用'}
+                        {record.disableFlag ? 'open' : 'disabled'}
                     </span>
                 )
             }
         },
         {
-            title: '操作',
+            title: 'operation',
             dataIndex: 'operation',
             key: 5,
             align: 'center',
             render: (_, record) => {
                 return (
                     <span>
-                        <Popconfirm title="确定要执行此操作吗?" onConfirm={() => handleCurrentOperation(record)}>
+                        <Popconfirm title="Confirm?" onConfirm={() => handleCurrentOperation(record)}>
                             <Button type="primary"
                                     danger={!!record.disableFlag}>
-                                {record.disableFlag ? '禁用' : '启用'}
+                                {record.disableFlag ? 'disabled' : 'open'}
                             </Button>
                         </Popconfirm>
                     </span>
@@ -125,9 +125,9 @@ export  default  function SellerComponent() {
         <div className="sellerWrapper">
 
              {/*layout start*/}
-              <div className="title">商家管理</div>
+              <div className="title">Seller List</div>
               <div className="buttonLayout">
-                  <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>新增商户</Button>
+                  <Button type="primary" onClick={showModal} icon={<PlusCircleOutlined />}>Add</Button>
               </div>
             {/*layout end*/}
 

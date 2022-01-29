@@ -8,7 +8,6 @@ export default function PcLogin() {
     const navigate = useNavigate();
     const onFinish = (values) => {
         getLogin(values).then(res => {
-            console.log("res", res);
             if (res.status === "success") {
                 // 跳转主页
                 navigate("/home")

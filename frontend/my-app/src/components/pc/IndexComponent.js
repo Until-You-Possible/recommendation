@@ -9,25 +9,23 @@ export default function IndexComponent() {
 
     useEffect(() => {
         // 获取注册用户的数量
-        setTimeout(() => {
-            getUserCount().then(res => {
-                if (res) {
-                    setUserCount(res)
-                }
-            })
-        }, 2000)
+        getUserCount().then(res => {
+            if (res) {
+                setUserCount(res)
+            }
+        });
 
     });
 
     return (
         <div className="indexWrapper">
-            <div className="title">欢迎进入管理后台</div>
+            <div className="title">Welcome Admin</div>
             <Row  gutter={16}>
                 <Col span={6}>
                     <Card
                         hoverable
                         cover={<img alt="info" src={imgURL} />}
-                        title="注册用户数量">
+                        title="User Count">
                         <div className="innerNumber">
                             {!userCount ? <Spin /> : userCount}
                         </div>

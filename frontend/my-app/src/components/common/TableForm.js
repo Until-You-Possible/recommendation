@@ -1,6 +1,5 @@
 import React from "react";
 import {Form, Input, message, Modal} from "antd";
-import {addSeller} from "../../api/pc";
 
 
 // 实现目标
@@ -25,7 +24,7 @@ export default function TableForm(props) {
 
     const { refreshTable }  = props
     const onFinish = (values) => {
-        addSeller(values).then(res => {
+        props.api(values).then(res => {
             if (res.status === "success") {
                 message.info('successfully~').then(r => null);
                 props.handleCancel()
@@ -37,13 +36,14 @@ export default function TableForm(props) {
         });
     }
 
-    const renderDiffComponent = (type) => {
-        if (type === "input") {
+    const renderDiffComponent = (item) => {
+        if (item.type === "input") {
+            const placeholderText = item.rules[0].message
             return (
-                <Input placeholder="请输入" />
+                <Input placeholder={placeholderText} />
             )
         }
-        return <Input placeholder="默认输入框" />
+        return <Input placeholder="Enter message" />
     }
 
 
@@ -55,8 +55,8 @@ export default function TableForm(props) {
                 forceRender
                 title={props.title}
                visible={props.visible}
-               okText="创建"
-               cancelText="取消"
+               okText="Create"
+               cancelText="Cancel"
                onOk={handleOk}
                onCancel={handleCancel}>
                 <Form
@@ -73,7 +73,7 @@ export default function TableForm(props) {
                                     name={item.name}
                                     rules={item.rules}
                                 >
-                                    { renderDiffComponent(item.type) }
+                                    { renderDiffComponent(item) }
                                 </Form.Item>
                             )
                         })

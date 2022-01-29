@@ -3,31 +3,31 @@ export const routesMenu = [
     {
         id: 1,
         path: "/index",
-        name: "首页",
+        name: "HOME",
         icon: ""
     },
     // {
     //     id: 2,
     //     path: "/login",
-    //     name: "登陆",
+    //     name: "login",
     //     icon: ""
     // },
     {
         id: 3,
         path: "/category",
-        name: "品类查询",
+        name: "CATEGORY",
         icon: ""
     },
     {
         id: 4,
         path: "/shop",
-        name: "门店服务",
+        name: "SHOP",
         icon: ""
     },
     {
         id: 5,
         path: "/seller",
-        name: "商户查询",
+        name: "SELLER",
         icon: ""
     }
 ]

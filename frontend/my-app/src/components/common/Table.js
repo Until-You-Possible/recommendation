@@ -29,9 +29,7 @@ export default function PublicTable(props) {
             setTableLoad(true);
             if (res.status === "success") {
                 setDataSource(res.data);
-                setTimeout(() => {
-                    setTableLoad(false);
-                },1500);
+                setTableLoad(false);
             } else {
                 setTableLoad(true);
             }
