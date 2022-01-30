@@ -91,16 +91,116 @@ export default function ShopComponent() {
 
     const formColumn = [
         {
-            name: "name",
+            name: "icon_url",
             id: 1,
             type: "input",
             rules: [
                 {
                     required: true,
-                    message: "Enter"
+                    message: "Enter icon_url"
                 }
             ]
-        }
+        },
+        {
+            name: "name",
+            id: 2,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter shop name"
+                }
+            ]
+        },
+        {
+            name: "pricePerMan",
+            id: 3,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter pricePerMan"
+                }
+            ]
+        },
+
+        {
+            name: "latitude",
+            id: 4,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter latitude"
+                }
+            ]
+        },
+        {
+            name: "longtitude",
+            id: 5,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter longtitude"
+                }
+            ]
+        },
+        {
+            name: "tags",
+            id: 6,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter tags"
+                }
+            ]
+        },
+        {
+            name: "startTime",
+            id: 7,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter startTime"
+                }
+            ]
+        },
+        {
+            name: "endTime",
+            id: 8,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter endTime"
+                }
+            ]
+        },
+        {
+            name: "sellerId",
+            id: 9,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter sellerId"
+                }
+            ]
+        },
+        {
+            name: "categoryId",
+            id: 10,
+            type: "input",
+            rules: [
+                {
+                    required: true,
+                    message: "Enter categoryId"
+                }
+            ]
+        },
     ]
 
     return (

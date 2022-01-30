@@ -38,7 +38,7 @@ export  default  function CategoryComponent() {
         {
             title: 'ID',
             dataIndex: 'id',
-            key: "id",
+            key: 1,
             align: 'center'
         },
         {
@@ -74,7 +74,7 @@ export  default  function CategoryComponent() {
             ]
         },
         {
-            name: "icon_url",
+            name: "iconUrl",
             id: 2,
             type: "input",
             rules: [
@@ -92,7 +92,7 @@ export  default  function CategoryComponent() {
             rules: [
                 {
                     required: true,
-                    message: "Enter category sort"
+                    message: "Enter category sort (require number)"
 
                 }
             ]
