@@ -4,7 +4,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class shopDTO {
-    @NotBlank(message = "服务名不能为空")
+    @NotBlank(message = "门店名不能为空")
     private String name;
 
     @NotNull(message = "人均价格不能为空")
