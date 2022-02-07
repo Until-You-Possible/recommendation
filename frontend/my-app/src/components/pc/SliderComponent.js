@@ -26,7 +26,7 @@ export default function SiderComponent() {
                           defaultSelectedKeys={['1']}
                           mode="inline">
                         {
-                            routesMenu.map(item =>
+                            routesMenu.length && routesMenu.map(item =>
                                 (
                                     <Menu.Item key={item.id} icon={<PieChartOutlined />}>
                                         <Link to={ "/home" + item.path}>{item.name}</Link>

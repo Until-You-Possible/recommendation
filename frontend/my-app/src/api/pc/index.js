@@ -17,10 +17,13 @@ export const getLogOut = () => post("/admin/admin/logout")
 
 /**
  *  index component
- *  get user count
+ *  get user/category/shop/seller count
  */
 
 export const getUserCount = () => get("/admin/admin/getCount")
+export const getShopCount = () => get("/admin/shop/get_all_shop")
+export const getSellerCount = () => get("/admin/seller/getAllSeller")
+export const getCategoryCount = () => get("/admin/category/get_all_category")
 
 
 /**
