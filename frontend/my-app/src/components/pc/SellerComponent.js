@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Button, Form, Popconfirm} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { downSeller, getAllSeller, upSeller} from "../../api/pc";
-import "./style/sellerComponent.scss"
+import "./style/sellerComponent.less"
 import PublicTable from "../common/Table";
 import TableForm from "../common/TableForm";
 

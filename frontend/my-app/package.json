@@ -42,5 +42,5 @@
   "devDependencies": {
     "web-vitals": "^2.1.2"
   },
-  "proxy": "http://192.168.0.104:8010"
+  "proxy": "http://192.168.0.10:8010"
 }

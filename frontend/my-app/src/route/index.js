@@ -3,8 +3,7 @@ export const routesMenu = [
     {
         id: 1,
         path: "/index",
-        name: "HOME",
-        icon: ""
+        name: "HOME"
     },
     // {
     //     id: 2,
@@ -21,13 +20,11 @@ export const routesMenu = [
     {
         id: 4,
         path: "/shop",
-        name: "SHOP",
-        icon: ""
+        name: "SHOP"
     },
     {
         id: 5,
         path: "/seller",
-        name: "SELLER",
-        icon: ""
+        name: "SELLER"
     }
 ]

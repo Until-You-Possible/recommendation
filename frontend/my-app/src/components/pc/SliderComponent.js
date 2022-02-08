@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { useLocation } from "react-router-dom";
 import {Image, Layout, Menu} from "antd";
 import {AppleOutlined, GithubOutlined, PieChartOutlined, WindowsOutlined} from "@ant-design/icons";
 import "../../style/pc.css"
@@ -7,7 +8,13 @@ import {Link} from "react-router-dom";
 import {routesMenu} from "../../route";
 const { Sider: SliderComponent } = Layout;
 
+
+
+
 export default function SiderComponent() {
+
+    const pathNameCurrent = useLocation().pathname;
+    console.log("useLocation", useLocation());
 
     const [collapsed] = useState(false);
 
@@ -27,6 +34,22 @@ export default function SiderComponent() {
 
     }
 
+    const getCurrentMenu = () => {
+        if (pathNameCurrent.includes("index")) {
+            return ["1"]
+        }
+        if (pathNameCurrent.includes("category")) {
+            return ["3"]
+        }
+        if (pathNameCurrent.includes("shop")) {
+            return ["4"]
+        }
+        if (pathNameCurrent.includes("seller")) {
+            return ["5"]
+        }
+    }
+
+
     useEffect(() => {
     });
 
@@ -39,7 +62,7 @@ export default function SiderComponent() {
 
                     <Menu theme="dark"
                           style={{height: "100%"}}
-                          defaultSelectedKeys={['1']}
+                          defaultSelectedKeys={getCurrentMenu()}
                           mode="inline">
                         {
                             routesMenu.length && routesMenu.map(item =>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import "./style/indexComponent.scss"
+import "./style/indexComponent.less"
 import { Card, Row, Col, Spin } from "antd";
 import imgURL from "../../asset/images/selfLogo.jpeg"
 import {getCategoryCount, getSellerCount, getShopCount, getUserCount} from "../../api/pc";

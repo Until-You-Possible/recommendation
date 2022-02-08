@@ -31,12 +31,12 @@ export default function PublicTable(props) {
                 setDataSource(res.data);
                 setTableLoad(false);
             } else {
-                setTableLoad(true);
+                setTableLoad(false);
             }
         });
     }
 
-    let [tableLoad, setTableLoad] = useState(true);
+    let [tableLoad, setTableLoad] = useState(false);
 
     let [dataSource, setDataSource] = useState([])
 

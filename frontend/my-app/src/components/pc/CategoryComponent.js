@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import { getCategoryList, addCategory} from "../../api/pc";
-import "./style/categoryComponent.scss"
+import "./style/categoryComponent.less"
 import PublicTable from "../common/Table";
 import TableForm from "../common/TableForm";
 export  default  function CategoryComponent() {
