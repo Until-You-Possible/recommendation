@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, forwardRef } from "react";
 import {Button, Form, Popconfirm} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { downSeller, getAllSeller, upSeller} from "../../api/pc";
+import {addSeller, downSeller, getAllSeller, upSeller} from "../../api/pc";
 import "./style/sellerComponent.less"
 import PublicTable from "../common/Table";
 import TableForm from "../common/TableForm";
 
-export  default  function SellerComponent() {
+
+function SellerComponent() {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [ modelTitle ] = useState("Add New Seller");
@@ -23,13 +24,19 @@ export  default  function SellerComponent() {
         addForm.submit();
     };
     const refreshTable = () => {
-        tableRef.current.getTable();
+        // tableRef.current.getTable();
     }
 
     const handleCancel = () => {
         setIsModalVisible(false);
         addForm.resetFields();
     };
+
+    useEffect(() => {
+        // let tableRef = React.createRef();
+        console.log("tableRef", tableRef);
+    }, []);
+
 
     // Table
     const columns = [
@@ -132,12 +139,14 @@ export  default  function SellerComponent() {
             {/*layout end*/}
 
             <PublicTable
+                ref={tableRef}
                 api = {getAllSeller}
                 columns = {columns} />
 
             {/*Model component*/}
             <TableForm
                 visible = {isModalVisible}
+                api = {addSeller}
                 handleOk={handleOk}
                 handleCancel={handleCancel}
                 refreshTable={refreshTable}
@@ -149,3 +158,5 @@ export  default  function SellerComponent() {
         </div>
     )
 }
+
+export  default forwardRef(SellerComponent)

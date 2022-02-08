@@ -14,7 +14,6 @@ const { Sider: SliderComponent } = Layout;
 export default function SiderComponent() {
 
     const pathNameCurrent = useLocation().pathname;
-    console.log("useLocation", useLocation());
 
     const [collapsed] = useState(false);
 

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Form, Popconfirm} from "antd";
 import {PlusCircleOutlined} from "@ant-design/icons";
-import { getShopList } from "../../api/pc";
+import {createShop, getShopList} from "../../api/pc";
 import PublicTable from "../common/Table";
 import TableForm from "../common/TableForm";
 
@@ -222,6 +222,7 @@ export default function ShopComponent() {
             <TableForm
                 visible = {isModalVisible}
                 handleOk={handleOk}
+                api = {createShop}
                 handleCancel={handleCancel}
                 refreshTable={refreshTable}
                 title={modelTitle}

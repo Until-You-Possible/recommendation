@@ -24,6 +24,7 @@ export default function TableForm(props) {
 
     const { refreshTable }  = props
     const onFinish = (values) => {
+        console.log("values", values);
         props.api(values).then(res => {
             if (res.status === "success") {
                 message.info('successfully~').then(r => null);
