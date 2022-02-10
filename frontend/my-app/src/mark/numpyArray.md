@@ -28,3 +28,9 @@ numpy支持高级大量的维度数组与矩阵运算，另外也提供了大量
 ![img.png](img/img9.png)
 
 其中，x表示样本的平均数，n表示样本的数量，Xi表示个人， S^2表示方差
+
+5: 一些基本的概念
+
+![img.png](img/img10.png)
+
+6：numpy.array的数据访问
