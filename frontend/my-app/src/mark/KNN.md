@@ -9,12 +9,12 @@
 
 kNN解决分类问题
 
-![img.png](img.png)
-![img_1.png](img_1.png)
+![img.png](img/img16.png)
+![img_1.png](img/img_1.png)
 
 根据欧拉公式得到
 
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 
 KNN算法是非常特殊的。可以被认为是没有模型的算法
 为了和其他算法统一。可以被认为训练数据集就是模型本身
