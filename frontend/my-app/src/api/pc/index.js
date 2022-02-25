@@ -25,7 +25,6 @@ export const getShopCount = () => get("/admin/shop/get_all_shop")
 export const getSellerCount = () => get("/admin/seller/getAllSeller")
 export const getCategoryCount = () => get("/admin/category/get_all_category")
 
-
 /**
  * seller component
  * add seller
